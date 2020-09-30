@@ -7,46 +7,70 @@ namespace EmployeeWageComputation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Employee Wage Computation in Master Branch");
-            EmployeeWageComputation.EmpWage.ComputeEmpWage();
+            Console.WriteLine("Welcome to Employee Wage Computation in Master Branch\n");
+            Company company1 = new Company("Capgemini", 25, 100,1500);
+            Company company2 = new Company("TCS", 25, 120, 1200);
+            EmployeeWageComputation.EmpWage.ComputeEmpWage(company1);
+            EmployeeWageComputation.EmpWage.ComputeEmpWage(company2);
         }
     }
     public class EmpWage
     {
         const int IS_FULL_TIME = 2;
         const int IS_PART_TIME = 1;
-        const int EMP_RATE_PER_HOUR = 20;
-        const int NUM_OF_WORKING_DAYS = 20;
-        const int MAX_HRS_IN_MONTH = 100;
-        public static void ComputeEmpWage()
+        public static void ComputeEmpWage(Company company)
         {
+            int numOfWorkingDays = company.noOfWorkingDays;
+            int maxHrsInMonth = company.maxHrsInMonth;
+            string companyName = company.companyName;
+            int empRatePerHOur = company.empRatePerHour;
             //Variables
-            int empHrs = 0;
             int totalEmpHrs = 0;
             int totalWorkingDays = 0;
-            while(totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS)
+            Console.WriteLine("Company : "+companyName);
+            while(totalEmpHrs<=maxHrsInMonth && totalWorkingDays<numOfWorkingDays)
             {
                 totalWorkingDays++;
-                Random random = new Random();
                 //Computation
-                int empCheck = random.Next(0, 3);
-                switch (empCheck)
-                {
-                    case IS_PART_TIME:
-                        empHrs = 4;
-                        break;
-                    case IS_FULL_TIME:
-                        empHrs = 8;
-                        break;
-                    default:
-                        empHrs = 0;
-                        break;
-                }
+                int empHrs = EmpHrs();
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Day#: " + totalWorkingDays+ " Emp Hrs : "+empHrs);
             }
-            int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
-            Console.WriteLine("Total Emp Wage : "+totalEmpWage +"\nTotal Working Hrs: "+totalEmpHrs);
+            int totalEmpWage = totalEmpHrs * empRatePerHOur;
+            Console.WriteLine("Total Emp Wage : "+totalEmpWage +"\nTotal Working Hrs: "+totalEmpHrs+"\n");
+        }
+        public static int EmpHrs()
+        {
+            int empHrs = 0;
+            Random random = new Random();
+            int empCheck = random.Next(0, 3);
+            switch (empCheck)
+            {
+                case IS_PART_TIME:
+                    empHrs = 4;
+                    break;
+                case IS_FULL_TIME:
+                    empHrs = 8;
+                    break;
+                default:
+                    empHrs = 0;
+                    break;
+            }
+            return empHrs;
+        }
+    }
+    public class Company
+    {
+        public string companyName;
+        public int noOfWorkingDays;
+        public int maxHrsInMonth;
+        public int empRatePerHour;
+        public Company(string name,int workDays,int hrs,int rate)
+        {
+            companyName = name;
+            noOfWorkingDays = workDays;
+            maxHrsInMonth = hrs;
+            empRatePerHour = rate;
         }
     }
 }
