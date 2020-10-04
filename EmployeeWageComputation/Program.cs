@@ -10,8 +10,8 @@ namespace EmployeeWageComputation
             Console.WriteLine("Welcome to Employee Wage Computation in Master Branch");
             Console.WriteLine("=====================================================\n");
             EmpWageBuilder empObj = new EmpWageBuilder();
-            empObj.AddCompanyEmpwage("Capgemini", 25, 100, 1500);
-            empObj.AddCompanyEmpwage("TCS", 25, 120, 1200);
+            empObj.AddCompanyEmpWage("DMart", 20, 100, 100);
+            empObj.AddCompanyEmpWage("Reliance", 10, 50, 200);
             empObj.ComputeEmpWage();
         }
     }

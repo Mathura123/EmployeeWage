@@ -4,6 +4,11 @@ using System.Text;
 
 namespace EmployeeWageComputation
 {
+    public interface IComputeEmpWage
+    {
+        public void AddCompanyEmpWage(string companyName, int workDays, int maxHrs, int empRate);
+        public void ComputeEmpWage();
+    }
     public class CompanyEmpWage
     {
         public string companyName;

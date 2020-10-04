@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EmployeeWageComputation
 {
-    public class EmpWageBuilder
+    public class EmpWageBuilder:IComputeEmpWage
     {
         const int IS_FULL_TIME = 2;
         const int IS_PART_TIME = 1;
@@ -37,11 +37,11 @@ namespace EmployeeWageComputation
                 Console.WriteLine("Day#: " + totalWorkingDays + " Emp Hrs : " + empHrs);
             }
             int totalEmpWage = totalEmpHrs * empRatePerHOur;
-            Console.WriteLine("Total Emp Wage is " + totalEmpWage + " for Company "+ company.companyName + "\n");
+            Console.WriteLine("Total Emp Wage : " + totalEmpWage + " for Company : "+ company.companyName + "\n");
             return totalEmpWage;
         }
 
-        public void AddCompanyEmpwage(string companyName, int workDays, int maxHrs, int empRate)
+        public void AddCompanyEmpWage(string companyName, int workDays, int maxHrs, int empRate)
         {
             CompanyEmpWage objComEmpWage = new CompanyEmpWage(companyName, workDays, maxHrs, empRate);
             comEmpWageList.Add(objComEmpWage);
