@@ -4,11 +4,13 @@ using System.Text;
 
 namespace EmployeeWageComputation
 {
-    public class EmpWage
+    public class EmpWageBuilder
     {
         const int IS_FULL_TIME = 2;
         const int IS_PART_TIME = 1;
-        public static void ComputeEmpWage(Company company)
+        private int noOfCompanies=0;
+        private List<CompanyEmpWage> comEmpWageList = new List<CompanyEmpWage>();
+        public static void ComputeEmpWage(CompanyEmpWage company)
         {
             int numOfWorkingDays = company.noOfWorkingDays;
             int maxHrsInMonth = company.maxHrsInMonth;
@@ -27,7 +29,15 @@ namespace EmployeeWageComputation
                 Console.WriteLine("Day#: " + totalWorkingDays + " Emp Hrs : " + empHrs);
             }
             int totalEmpWage = totalEmpHrs * empRatePerHOur;
-            Console.WriteLine("Total Emp Wage : " + totalEmpWage + "\nTotal Working Hrs: " + totalEmpHrs + "\n");
+            company.SetTotalEmpWage(totalEmpWage);
+            Console.WriteLine("Total Emp Wage is " + totalEmpWage + " for Company "+ company.companyName + "\n");
+        }
+
+        public CompanyEmpWage AddCompanyEmpwage(string companyName, int workDays, int maxHrs, int empRate)
+        {
+            CompanyEmpWage objComEmpWage = new CompanyEmpWage(companyName, workDays, maxHrs, empRate);
+            comEmpWageList.Add(objComEmpWage);
+            return objComEmpWage;
         }
         public static int EmpHrs()
         {
