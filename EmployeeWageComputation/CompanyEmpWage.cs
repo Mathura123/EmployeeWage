@@ -16,6 +16,7 @@ namespace EmployeeWageComputation
         public int noOfWorkingDays;
         public int maxHrsInMonth;
         public int empRatePerHour;
+        public Dictionary<int,int> dailyEmpWageDict = new Dictionary<int,int>();
         public int totalEmpWage;
         public CompanyEmpWage(string companyName, int noOfWorkingDays, int maxHrsInMonth, int empRatePerHour)
         {
@@ -28,6 +29,9 @@ namespace EmployeeWageComputation
         {
             this.totalEmpWage = totalEmpWage;
         }
-
+        public void StoreDailyEmpWage(int day, int dayWage)
+        {
+            this.dailyEmpWageDict.Add(day, dayWage);
+        }
     }
 }

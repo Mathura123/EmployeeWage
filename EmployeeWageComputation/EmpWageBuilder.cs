@@ -24,7 +24,7 @@ namespace EmployeeWageComputation
             int numOfWorkingDays = company.noOfWorkingDays;
             int maxHrsInMonth = company.maxHrsInMonth;
             string companyName = company.companyName;
-            int empRatePerHOur = company.empRatePerHour;
+            int empRatePerHour = company.empRatePerHour;
             //Variables
             int totalEmpHrs = 0;
             int totalWorkingDays = 0;
@@ -35,9 +35,11 @@ namespace EmployeeWageComputation
                 //Computation
                 int empHrs = EmpHrs();
                 totalEmpHrs += empHrs;
+                int dailyWage = empHrs * empRatePerHour;
+                company.StoreDailyEmpWage(totalWorkingDays, dailyWage);
                 Console.WriteLine("Day#: " + totalWorkingDays + " Emp Hrs : " + empHrs);
             }
-            int totalEmpWage = totalEmpHrs * empRatePerHOur;
+            int totalEmpWage = totalEmpHrs * empRatePerHour;
             Console.WriteLine("Total Emp Wage : " + totalEmpWage + " for Company : "+ company.companyName + "\n");
             return totalEmpWage;
         }
@@ -67,6 +69,5 @@ namespace EmployeeWageComputation
             }
             return empHrs;
         }
-
     }
 }
