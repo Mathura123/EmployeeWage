@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace EmployeeWageComputation
@@ -10,7 +11,14 @@ namespace EmployeeWageComputation
         const int IS_PART_TIME = 1;
         private int noOfCompanies=0;
         private List<CompanyEmpWage> comEmpWageList = new List<CompanyEmpWage>();
-        public static void ComputeEmpWage(CompanyEmpWage company)
+        public void ComputeEmpWage()
+        {
+            foreach(CompanyEmpWage item in comEmpWageList)
+            {
+                item.SetTotalEmpWage(this.ComputeEmpWage(item));
+            }
+        }
+        private int ComputeEmpWage(CompanyEmpWage company)
         {
             int numOfWorkingDays = company.noOfWorkingDays;
             int maxHrsInMonth = company.maxHrsInMonth;
@@ -29,16 +37,16 @@ namespace EmployeeWageComputation
                 Console.WriteLine("Day#: " + totalWorkingDays + " Emp Hrs : " + empHrs);
             }
             int totalEmpWage = totalEmpHrs * empRatePerHOur;
-            company.SetTotalEmpWage(totalEmpWage);
             Console.WriteLine("Total Emp Wage is " + totalEmpWage + " for Company "+ company.companyName + "\n");
+            return totalEmpWage;
         }
 
-        public CompanyEmpWage AddCompanyEmpwage(string companyName, int workDays, int maxHrs, int empRate)
+        public void AddCompanyEmpwage(string companyName, int workDays, int maxHrs, int empRate)
         {
             CompanyEmpWage objComEmpWage = new CompanyEmpWage(companyName, workDays, maxHrs, empRate);
             comEmpWageList.Add(objComEmpWage);
-            return objComEmpWage;
         }
+        
         public static int EmpHrs()
         {
             int empHrs = 0;
