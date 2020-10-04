@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
 using System.Text;
+using System.Reflection.PortableExecutable;
 
 namespace EmployeeWageComputation
 {
@@ -10,7 +11,6 @@ namespace EmployeeWageComputation
     {
         const int IS_FULL_TIME = 2;
         const int IS_PART_TIME = 1;
-        private int noOfCompanies=0;
         private ArrayList comEmpWageList = new ArrayList();
         public void ComputeEmpWage()
         {
@@ -68,6 +68,23 @@ namespace EmployeeWageComputation
                     break;
             }
             return empHrs;
+        }
+        public void GetTotalEmployeeWage(string companyName)
+        {
+            bool companyFound = false;
+            int i = 0;
+            foreach(CompanyEmpWage item in comEmpWageList)
+            {
+                if(item.companyName == companyName)
+                {
+                    Console.WriteLine("Total Employee Wage in " + companyName + " is " + item.totalEmpWage);
+                    companyFound = true;
+                }
+            }
+            if (companyFound == false)
+            {
+                Console.WriteLine("Company Not Found");
+            }
         }
     }
 }

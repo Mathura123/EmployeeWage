@@ -9,6 +9,7 @@ namespace EmployeeWageComputation
     {
         public void AddCompanyEmpWage(string companyName, int workDays, int maxHrs, int empRate);
         public void ComputeEmpWage();
+        public void GetTotalEmployeeWage(string companyName);
     }
     public class CompanyEmpWage
     {
