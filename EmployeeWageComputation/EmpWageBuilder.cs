@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace EmployeeWageComputation
         const int IS_FULL_TIME = 2;
         const int IS_PART_TIME = 1;
         private int noOfCompanies=0;
-        private List<CompanyEmpWage> comEmpWageList = new List<CompanyEmpWage>();
+        private ArrayList comEmpWageList = new ArrayList();
         public void ComputeEmpWage()
         {
             foreach(CompanyEmpWage item in comEmpWageList)
