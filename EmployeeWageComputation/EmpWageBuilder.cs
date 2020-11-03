@@ -7,14 +7,15 @@ using System.Reflection.PortableExecutable;
 
 namespace EmployeeWageComputation
 {
-    public class EmpWageBuilder:IComputeEmpWage
+    public class EmpWageBuilder : IComputeEmpWage
     {
+        private readonly NLogService nLog = new NLogService();
         const int IS_FULL_TIME = 2;
         const int IS_PART_TIME = 1;
         private ArrayList comEmpWageList = new ArrayList();
         public void ComputeEmpWage()
         {
-            foreach(CompanyEmpWage item in comEmpWageList)
+            foreach (CompanyEmpWage item in comEmpWageList)
             {
                 item.SetTotalEmpWage(this.ComputeEmpWage(item));
             }
@@ -40,7 +41,8 @@ namespace EmployeeWageComputation
                 Console.WriteLine("Day#: " + totalWorkingDays + " Emp Hrs : " + empHrs);
             }
             int totalEmpWage = totalEmpHrs * empRatePerHour;
-            Console.WriteLine("Total Emp Wage : " + totalEmpWage + " for Company : "+ company.companyName + "\n");
+            Console.WriteLine("Total Emp Wage : " + totalEmpWage + " for Company : " + company.companyName + "\n");
+            nLog.LogInfo("Total Emp Wage : " + totalEmpWage + " for Company : " + company.companyName);
             return totalEmpWage;
         }
 
@@ -49,7 +51,7 @@ namespace EmployeeWageComputation
             CompanyEmpWage objComEmpWage = new CompanyEmpWage(companyName, workDays, maxHrs, empRate);
             comEmpWageList.Add(objComEmpWage);
         }
-        
+
         public static int EmpHrs()
         {
             int empHrs = 0;
@@ -73,17 +75,19 @@ namespace EmployeeWageComputation
         {
             bool companyFound = false;
             int i = 0;
-            foreach(CompanyEmpWage item in comEmpWageList)
+            foreach (CompanyEmpWage item in comEmpWageList)
             {
-                if(item.companyName == companyName)
+                if (item.companyName == companyName)
                 {
                     Console.WriteLine("Total Employee Wage in " + companyName + " is " + item.totalEmpWage);
                     companyFound = true;
+                    nLog.LogInfo("Total Employee Wage in " + companyName + " is " + item.totalEmpWage);
                 }
             }
             if (companyFound == false)
             {
                 Console.WriteLine("Company Not Found");
+                nLog.LogInfo("Company Not Found");
             }
         }
     }

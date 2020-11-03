@@ -1,0 +1,9 @@
+2020-11-03 17:21:20.7299|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 8400 for Company : DMart
+2020-11-03 17:21:21.0796|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 5600 for Company : Reliance
+2020-11-03 17:22:15.8749|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 6000 for Company : DMart
+2020-11-03 17:22:16.0204|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 11200 for Company : Reliance
+2020-11-03 17:23:47.9926|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 8800 for Company : DMart
+2020-11-03 17:23:48.1351|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 8000 for Company : Reliance
+2020-11-03 17:25:26.1516|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 8800 for Company : DMart
+2020-11-03 17:25:26.5123|INFO|EmployeeWageComputation.NLogService|Total Emp Wage : 10400 for Company : Reliance
+2020-11-03 17:25:26.5123|INFO|EmployeeWageComputation.NLogService|Total Employee Wage in DMart is 8800
